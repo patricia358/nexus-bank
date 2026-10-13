@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Serviços - Nexus Bank</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // TRUQUE COMPROVADO DE DIRECIONAMENTO INDIVIDUAL
+        function aplicarFiltroServico() {
+            const servicoAlvo = window.location.hash;
+
+            if (servicoAlvo) {
+                // Primeiro esconde absolutamente todos os blocos para dar o efeito de foco
+                if(document.getElementById('cartao')) document.getElementById('cartao').style.display = 'none';
+                if(document.getElementById('emprestimo')) document.getElementById('emprestimo').style.display = 'none';
+                if(document.getElementById('investimento')) document.getElementById('investimento').style.display = 'none';
+                if(document.getElementById('seguro')) document.getElementById('seguro').style.display = 'none';
+
+                // Mostra apenas aquele em que o usuário clicou na página inicial
+                if (servicoAlvo === '#cartao' && document.getElementById('cartao')) document.getElementById('cartao').style.display = 'block';
+                if (servicoAlvo === '#emprestimo' && document.getElementById('emprestimo')) document.getElementById('emprestimo').style.display = 'block';
+                if (servicoAlvo === '#investimento' && document.getElementById('investimento')) document.getElementById('investimento').style.display = 'block';
+                if (servicoAlvo === '#seguro' && document.getElementById('seguro')) document.getElementById('seguro').style.display = 'block';
+            } else {
+                // Se veio pelo menu principal do topo, mostra todos juntos normalmente
+                if(document.getElementById('cartao')) document.getElementById('cartao').style.display = 'block';
+                if(document.getElementById('emprestimo')) document.getElementById('emprestimo').style.display = 'block';
+                if(document.getElementById('investimento')) document.getElementById('investimento').style.display = 'block';
+                if(document.getElementById('seguro')) document.getElementById('seguro').style.display = 'block';
+            }
+        }
+
+        window.onload = aplicarFiltroServico;
+        window.onhashchange = aplicarFiltroServico;
+    </script>
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <header>
+        <nav class="container">
+            <div class="logo">🧬 Nexus Bank</div>
+            <div class="nav-links">
+                <!-- O botão 'Ver Todos' foi removido daqui conforme solicitado -->
+                <a href="/">Voltar ao Início</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ÁREA DOS TEXTOS DETALHADOS E APROFUNDADOS -->
+    <main class="container" style="margin-top: 50px; padding-bottom: 80px;">
+        
+        <h1 style="font-size: 3rem; color: #45f3ff; text-align: center; margin-bottom: 20px;">
+            Conheça Nossos Serviços
+        </h1>
+        
+        <p style="color: #c5a3ff; text-align: center; font-size: 1.3rem; margin-bottom: 60px;">
+            Entenda em detalhes como ajudamos você a cuidar das suas finanças.
+        </p>
+
+        <!-- 1. BLOCO DO CARTÃO DE CRÉDITO -->
+        <section id="cartao" class="card-form" style="margin-bottom: 40px; padding: 40px;">
+            <h2 style="color: #45f3ff; font-size: 2rem; margin-bottom: 15px;">
+                💳 Cartão de Crédito Nexus Black
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #ffffff; margin-bottom: 15px;">
+                O nosso cartão Black internacional foi feito para quem busca liberdade financeira. 
+                Ele não possui nenhuma taxa de anuidade e oferece benefícios exclusivos.
+            </p>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #8c92ac;">
+                • 2% de dinheiro de volta (Cashback) em todas as compras que você fizer.<br>
+                • Acesso gratuito e ilimitado a salas VIP em aeroportos de todo o mundo.<br>
+                • Descontos especiais em lojas parceiras e seguros de viagem inclusos.
+            </p>
+        <a href="app_simulador.html" class="app-btn" style="text-decoration: none; display: inline-block; margin-top: 20px; text-align: center; width: auto; padding: 10px 25px; color: #ff007f !important; font-weight: bold !important;">Baixe o Aplicativo Grátis</a>
+
+        </section>
+
+
+        <!-- 2. BLOCO DOS EMPRÉSTIMOS -->
+        <section id="emprestimo" class="card-form" style="margin-bottom: 40px; padding: 40px;">
+            <h2 style="color: #45f3ff; font-size: 2rem; margin-bottom: 15px;">
+                💰 Empréstimos e Crédito Pessoal
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #ffffff; margin-bottom: 15px;">
+                Precisa de dinheiro rápido para realizar um sonho ou quitar dívidas? 
+                No Nexus Bank, o crédito é liberado direto na sua conta sem burocracia.
+            </p>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #8c92ac;">
+                • As menores taxas de juros do mercado, começando em apenas 1.99% ao mês.<br>
+                • Você tem até 90 dias para começar a pagar a primeira parcela do empréstimo.<br>
+                • Parcelamento flexível em até 60 meses para não apertar o seu orçamento mensal.
+            </p>
+        <a href="app_simulador.html" class="app-btn" style="text-decoration: none; display: inline-block; margin-top: 20px; text-align: center; width: auto; padding: 10px 25px; color: #ff007f !important; font-weight: bold !important;">Baixe o Aplicativo Grátis</a>
+        </section>
+
+        <!-- 3. BLOCO DOS INVESTIMENTOS -->
+        <section id="investimento" class="card-form" style="margin-bottom: 40px; padding: 40px;">
+            <h2 style="color: #45f3ff; font-size: 2rem; margin-bottom: 15px;">
+                📈 Investimentos Inteligentes
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #ffffff; margin-bottom: 15px;">
+                Não deixe o seu dinheiro parado na poupança perdendo valor. 
+                A nossa plataforma oferece opções seguras e que rendem muito mais.
+            </p>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #8c92ac;">
+                • Conta corrente com rendimento automático de 100% do CDI todos os dias.<br>
+                • Opções de renda fixa com garantia total contra perdas (FGC).<br>
+                • Resgate o seu dinheiro a qualquer hora do dia ou da noite, direto pelo app.
+            </p>
+        
+          <a href="app_simulador.html" class="app-btn" style="text-decoration: none; display: inline-block; margin-top: 20px; text-align: center; width: auto; padding: 10px 25px; color: #ff007f !important; font-weight: bold !important;">Baixe o Aplicativo Grátis</a>
+
+        </section>
+
+        <!-- 4. BLOCO DOS SEGUROS -->
+        <section id="seguro" class="card-form" style="margin-bottom: 40px; padding: 40px;">
+            <h2 style="color: #45f3ff; font-size: 2rem; margin-bottom: 15px;">
+                🛡️ Proteção e Seguros Nexus
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #ffffff; margin-bottom: 15px;">
+                Garanta a tranquilidade da sua família protegendo o que é mais importante para você. 
+                Nossos planos de seguro cabem perfeitamente no seu bolso.
+            </p>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #8c92ac;">
+                • Seguro de vida completo com coberturas especiais a partir de 10 reais por mês.<br>
+                • Seguro residencial que protege sua casa contra roubos, incêndios e danos elétricos.<br>
+                • Seguro de celular que cobre quedas acidentais, derramamento de líquidos e furtos.
+            </p>
+          <a href="app_simulador.html" class="app-btn" style="text-decoration: none; display: inline-block; margin-top: 20px; text-align: center; width: auto; padding: 10px 25px; color: #ff007f !important; font-weight: bold !important;">Baixe o Aplicativo Grátis</a>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ INSTITUCIONAL COMPLETO -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🧬 Nexus Bank S.A.</h4>
+                <p>O banco que evolui com você. Tecnologia e segurança financeira ao seu alcance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>📞 Canais de Atendimento</h4>
+                <p>SAC (24h): 0800 999 1234</p>
+                <p>Ouvidoria: 0800 999 5678</p>
+                <p>E-mail: suporte@nexusbank.com.br</p>
+            </div>
+            <div class="footer-section">
+                <h4>📍 Endereço Físico</h4>
+            
+                <p>Av. Paulista, 1000 - Bela Vista - São Paulo - SP</p>
+                <p>CEP: 01310-100</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

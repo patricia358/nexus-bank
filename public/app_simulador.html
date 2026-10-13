@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><title>📱 Nexus App</title>
+    <style>
+        body { background:#090b11; font-family:Arial, sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; color:#fff; }
+        .phone-container { width:360px; height:700px; background:#111625; border:12px solid #232a3c; border-radius:36px; box-shadow:0 10px 30px rgba(0,0,0,0.7); display:flex; flex-direction:column; overflow:hidden; position:relative; }
+        .phone-header { background:#0d111d; padding:12px 20px; display:flex; justify-content:space-between; font-size:0.8rem; color:#8c92ac; font-weight:bold; }
+        .phone-screen { flex:1; padding:20px; overflow-y:auto; padding-bottom:80px; }
+        h1, h2, h3, h4 { color:#45f3ff; text-align:center; margin-top:5px; }
+        .subtitle { color:#c5a3ff; font-size:0.95rem; text-align:center; margin-bottom:25px; }
+        .app-page { display:none; } .app-page.active { display:block; }
+        .app-card { background:#171e30; border:1px solid #232a3c; border-radius:12px; padding:15px; margin-bottom:15px; }
+        .extrato-item { display:flex; justify-content:space-between; border-bottom:1px solid #232a3c; padding:8px 0; font-size:0.9rem; }
+        .app-btn { background:#5d3fd3; color:#fff; border:none; padding:12px 20px; border-radius:6px; font-weight:bold; cursor:pointer; width:100%; margin-top:10px; font-size:0.95rem; }
+        .quick-actions { display:flex; justify-content:space-between; margin-bottom:20px; }
+        .action-circle { background:#232a3c; width:60px; height:60px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:1.3rem; cursor:pointer; }
+        .form-group { margin-bottom:12px; } .form-group label { display:block; font-size:0.85rem; color:#c5a3ff; margin-bottom:4px; }
+        .form-group input { width:100%; padding:8px; background:#0d111d; border:1px solid #232a3c; border-radius:4px; color:#fff; box-sizing:border-box; }
+        .phone-tabs { background:#0d111d; border-top:2px solid #232a3c; display:none; justify-content:space-around; padding:10px 0; width:100%; box-sizing: border-box; }
+        .tab-btn { background:none; border:none; color:#8c92ac; font-size:0.8rem; font-weight:bold; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; }
+        .tab-btn.active { color:#45f3ff; }
+        .loading-overlay { display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(17,22,37,0.95); justify-content:center; align-items:center; flex-direction:column; z-index:10; }
+        .spinner { border:4px solid rgba(255,255,255,0.1); width:50px; height:50px; border-radius:50%; border-left-color:#45f3ff; animation:spin 1s linear infinite; margin-bottom:20px; }
+        @keyframes spin { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
+        .result-box { display:none; margin-top:12px; padding:10px; border-radius:6px; font-weight:bold; font-size:0.9rem; text-align:center; }
+        .success { background:#0f3434; color:#45f3ff; border:1px solid #45f3ff; } .danger { background:#3d1414; color:#ff5c5c; border:1px solid #ff5c5c; }
+    </style>
+    <script src="app_codigo.js"></script>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-header"><span onclick="deslogarESair()" style="cursor:pointer; color:#ff5c5c; font-weight:bold;">⬅ Sair</span><span id="relogio">00:00</span><span>🔋 100%</span></div>
+         <!-- TELA DE BOAS-VINDAS INICIAL -->
+        <div id="tela-boas-vindas" class="phone-screen app-page active" style="padding-top: 60px;">
+            <h1>🧬 Nexus Bank</h1><p class="subtitle">Escolha como deseja acessar o aplicativo</p>
+            <div style="margin-top: 80px;">
+                <button class="app-btn" onclick="entrarComoDemonstracao()">Entrar no Modo Teste (Com Saldo)</button>
+                <p style="text-align: center; color: #8c92ac; font-size: 0.8rem; margin: 20px 0;">OU</p>
+                <button class="app-btn" style="background: #232a3c; color: #45f3ff; border: 1px solid #45f3ff;" onclick="irParaFormularioCadastro()">Criar uma Conta Nova do Zero</button>
+            </div>
+        </div>
+
+        <!-- TELA DE CADASTRO DO ZERO -->
+        <div id="tela-criar-conta-nova" class="phone-screen app-page">
+            <h2>Abra sua Conta</h2><p class="subtitle">Insira os dados para o app fictício</p>
+            <form onsubmit="finalizarCadastroNovo(event)">
+                <div class="form-group"><label>Nome Completo</label><input type="text" id="novo-nome" required placeholder="Digite seu nome"></div>
+                <div class="form-group"><label>E-mail</label><input type="email" id="novo-email" required placeholder="seu@email.com"></div>
+                <div class="form-group"><label>CPF</label><input type="text" placeholder="000.000.000-00" required></div>
+                <button type="submit" class="app-btn" style="background: #45f3ff; color: #111625;">Finalizar Cadastro</button>
+            </form>
+        </div>
+
+        <!-- TELA 1: HOME, SALDO E EXTRATO -->
+        <div id="tela-home" class="phone-screen app-page">
+            <h3 id="txt-boas-vindas" style="margin-bottom: 2px; text-align: left;">Olá!</h3>
+            <p style="color: #8c92ac; font-size: 0.85rem; margin-top: 0; text-align: left;">Conta Fictícia: 12345-6</p>
+            <div class="app-card" style="background: linear-gradient(135deg, #171e30, #232a3c); border-left: 4px solid #45f3ff;">
+                <p style="color: #c5a3ff; font-size: 0.85rem; margin: 0; text-align: left;">Saldo Disponível</p>
+                <h2 id="txt-saldo" style="font-size: 1.8rem; margin: 5px 0; color: #ffffff; text-align: left;">R$ 0,00</h2>
+                <p id="txt-limite" style="color: #8c92ac; font-size: 0.75rem; margin: 0; text-align: left;">💳 Limite: R$ 0,00</p>
+            </div>
+            <p style="font-weight: bold; font-size: 0.9rem; color: #45f3ff; text-align: left;">Área Pix e Atalhos</p>
+            <div class="quick-actions">
+                <div class="action-circle" onclick="acionarAtalhoPix('pix')">⚡</div>
+                <div class="action-circle" onclick="acionarAtalhoPix('transferir')">💸</div>
+                <div class="action-circle" onclick="acionarAtalhoPix('pagar')">📄</div>
+                <div class="action-circle" onclick="acionarAtalhoPix('cartoes')">🪪</div>
+            </div>
+            <!-- Nova caixinha invisível para exibir os avisos dos atalhos direto na tela -->
+            <div id="res-pix" class="result-box"></div>
+            <div id="box-extrato">
+                <p style="font-weight: bold; font-size: 0.9rem; color: #45f3ff; margin-top: 30px; text-align: left;">Extrato da Conta</p>
+                <div class="app-card">
+                    <div class="extrato-item"><span>🟢 Depósito Recebido</span><span style="color: #45f3ff; font-weight: bold;">+ R$ 2.500,00</span></div>
+                    <div class="extrato-item"><span>🔴 Compra no Crédito</span><span style="color: #ff5c5c;">- R$ 150,50</span></div>
+                    <div class="extrato-item"><span>🟢 Transferência PIX</span><span style="color: #45f3ff; font-weight: bold;">+ R$ 121,00</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA 2: PRODUTOS E CRÉDITO -->
+        <div id="tela-servicos" class="phone-screen app-page">
+            <h2>Produtos e Crédito</h2><p class="subtitle">Contrate na hora</p>
+            <div class="app-card">
+                <h4>💳 Cartão Black</h4><p style="color: #8c92ac; font-size: 0.8rem; margin-bottom: 10px;">Análise em tempo real.</p>
+                <button class="app-btn" onclick="simularCartao()">Solicitar Cartão</button>
+                <div id="res-cartao" class="result-box"></div>
+            </div>
+            <div class="app-card">
+                <h4>💰 Empréstimo Pessoal</h4><p style="color: #8c92ac; font-size: 0.8rem; margin-bottom: 10px;">Digite o valor para simular.</p>
+                <input type="number" id="valor-emprestimo" placeholder="Ex: 5000" style="width: 100%; padding: 8px; background: #0d111d; border: 1px solid #232a3c; color: white; border-radius: 4px;">
+                <button class="app-btn" onclick="simularEmprestimo()">Simular Crédito</button>
+                <div id="res-emprestimo" class="result-box"></div>
+            </div>
+            <div class="app-card">
+                <h4>🛡️ Proteção e Seguros</h4><p style="color: #8c92ac; font-size: 0.8rem; margin-bottom: 10px;">Contratação em um clique.</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="app-btn" style="margin-top:0;" onclick="contratarSeguro('Celular')">📱 Celular</button>
+                    <button class="app-btn" style="margin-top:0;" onclick="contratarSeguro('Vida')">❤️ Vida</button>
+                </div>
+                <!-- NOVO CARD DE INVESTIMENTOS DENTRO DO CELULAR -->
+            <div class="app-card" style="margin-top: 15px;">
+                <h4>📈 Investimentos CDB Nexus</h4><p style="color: #8c92ac; font-size: 0.8rem; margin-bottom: 10px;">Rendimento de 100% do CDI com liquidez diária.</p>
+                <input type="number" id="valor-investimento" placeholder="Quanto deseja investir? Ex: 1000" style="width: 100%; padding: 8px; background: #0d111d; border: 1px solid #232a3c; color: white; border-radius: 4px; box-sizing: border-box;">
+                <button class="app-btn" style="background: #45f3ff; color: #111625; margin-top: 10px;" onclick="aplicarInvestimento()">Aplicar Dinheiro</button>
+                <div id="res-investimento" class="result-box"></div>
+            </div> 
+                <div id="res-seguro" class="result-box"></div>
+            </div>
+        </div>
+         <!-- ABAS INFERIORES: Encaixadas perfeitamente antes de fechar a phone-container -->
+        <div class="phone-tabs">
+            <button id="btn-tab-home" class="tab-btn active" onclick="mudarTela('tela-home', this)">🏠<br>Início</button>
+            <button id="btn-tab-servicos" class="tab-btn" onclick="mudarTela('tela-servicos', this)">💼<br>Serviços</button>
+        </div>
+    </div>
+
+    <!-- ELEMENTO DE CARREGAMENTO -->
+    <div id="loading" class="loading-overlay"><div class="spinner"></div><p style="color:#45f3ff; font-weight:bold;">Processando...</p></div>
+
+    <!-- SCRIPT DO RELÓGIO ADICIONADO COM ATENÇÃO NO FINAL DA PÁGINA -->
+    <script>
+        function atualizarHorarioCelular() {
+            const agora = new Date();
+            const horas = String(agora.getHours()).padStart(2, '0');
+            const minutos = String(agora.getMinutes()).padStart(2, '0');
+            const elementoRelogio = document.getElementById('relogio');
+            if (elementoRelogio) {
+                elementoRelogio.innerText = `${horas}:${minutos}`;
+            }
+        }
+        // Atualiza na hora que carrega e depois a cada 1 segundo automaticamente
+        atualizarHorarioCelular();
+        setInterval(atualizarHorarioCelular, 1000);
+    </script>
+</body>
+</html>

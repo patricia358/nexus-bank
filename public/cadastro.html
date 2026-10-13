@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta Digital - Nexus Bank</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <header>
+        <nav class="container">
+            <div class="logo">🧬 Nexus Bank</div>
+            <div class="nav-links">
+                <a href="/">Voltar ao Início</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- FORMULÁRIO DE CADASTRO ISOLADO -->
+    <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; margin-top: 40px; padding-bottom: 60px;">
+        
+        <section id="cadastro-section" class="card-form" style="width: 100%; max-width: 550px; display: block !important;">
+            <h2 style="margin-bottom: 25px; text-align: center; color: #6f42c1; font-size: 2rem;">Abrir conta digital</h2>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label style="font-size: 15px;">Nome Completo</label>
+                    <input type="text" id="regName" required placeholder="Seu nome aqui" style="padding: 12px; font-size: 16px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 15px;">CPF (Apenas os 11 números)</label>
+                    <input type="text" id="regCpf" required placeholder="00000000000" minlength="11" maxlength="11" pattern="\d{11}" title="O CPF deve conter exatamente 11 números, sem pontos ou traços." style="padding: 12px; font-size: 16px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 15px;">E-mail</label>
+                    <input type="email" id="regEmail" required placeholder="seu@email.com" style="padding: 12px; font-size: 16px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 15px;">Telefone de Contato (DDD + Número)</label>
+                    <!-- CORREÇÃO 1: Travado para aceitar exatamente 11 números (Ex: 11999998888) -->
+                    <input type="text" id="regPhone" required placeholder="11999998888" minlength="11" maxlength="11" pattern="\d{11}" title="O telefone deve conter o DDD (2 dígitos) mais o número (9 dígitos), totalizando 11 números sem espaços ou traços." style="padding: 12px; font-size: 16px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 15px;">Endereço (Rua, Número, Bairro)</label>
+                    <input type="text" id="regAddress" required placeholder="Rua, Nº, Bairro" style="padding: 12px; font-size: 16px;">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 2;">
+                        <label style="font-size: 15px;">Cidade</label>
+                        <input type="text" id="regCity" required placeholder="Cidade" style="padding: 12px; font-size: 16px;">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label style="font-size: 15px;">Estado</label>
+                        <input type="text" id="regState" required placeholder="EX: SP" style="padding: 12px; font-size: 16px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 15px;">País</label>
+                    <input type="text" id="regCountry" required placeholder="Brasil" style="padding: 12px; font-size: 16px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 15px;">Crie uma Senha (6 dígitos)</label>
+                    <!-- CORREÇÃO 2: Travado o limite máximo e mínimo para exatamente 6 caracteres -->
+                    <input type="password" id="regPassword" required placeholder="******" minlength="6" maxlength="6" title="A senha deve conter exatamente 6 dígitos." style="padding: 12px; font-size: 16px;">
+                </div>
+                <button type="submit" style="background: #45f3ff; color: #0b0c10; padding: 15px; font-size: 18px; margin-top: 15px;">Criar Conta Grátis</button>
+            </form>
+            
+            <p id="registerMessage" style="margin-top: 20px; text-align: center; color: #45ff62; font-weight: bold; font-size: 16px;"></p>
+            
+            <p style="text-align: center; margin-top: 20px; color: #8c92ac;">
+                Já possui uma conta? <a href="/login" style="color: #45f3ff; font-weight: bold; text-decoration: none;">Faça login aqui</a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- RODAPÉ INSTITUCIONAL COMPLETO -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🧬 Nexus Bank S.A.</h4>
+                <p>O banco que evolui com você. Tecnologia e segurança financeira ao seu alcance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>📞 Canais de Atendimento</h4>
+                <p>SAC (24h): 0800 999 1234</p>
+                <p>Ouvidoria: 0800 999 5678</p>
+                <p>E-mail: suporte@nexusbank.com.br</p>
+            </div>
+         <div class="footer-section">
+                <h4>📍 Endereço Físico</h4>
+                <p>Av. Paulista, 1000 - Bela Vista - São Paulo - SP</p>
+                <p>CEP: 01310-100</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const cpf = document.getElementById('regCpf').value;
+            const email = document.getElementById('regEmail').value;
+            const phone = document.getElementById('regPhone').value;
+            const address = document.getElementById('regAddress').value;
+            const city = document.getElementById('regCity').value;
+            const state = document.getElementById('regState').value;
+            const country = document.getElementById('regCountry').value;
+            const password = document.getElementById('regPassword').value;
+            const messageEl = document.getElementById('registerMessage');
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, cpf, email, phone, address, city, state, country, password })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    messageEl.style.color = '#45ff62';
+                    messageEl.textContent = data.message + ' Redirecionando para o login...';
+                    
+                    document.getElementById('registerForm').reset();
+                    
+                    setTimeout(() => { window.location.href = '/login'; }, 2000);
+                } else {
+                    messageEl.style.color = '#ff4545';
+                    messageEl.textContent = data.message;
+                }
+            } catch (err) {
+                messageEl.style.color = '#ff4545';
+                messageEl.textContent = 'Erro ao conectar com o servidor.';
+            }
+        });
+    </script>
+</body>
+</html>

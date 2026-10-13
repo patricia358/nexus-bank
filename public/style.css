@@ -1,0 +1,283 @@
+:root {
+    --bg-dark: #0b0c10;
+    --bg-card: #1f2833;
+    --primary: #6f42c1; /* Roxo moderno */
+    --accent: #45f3ff;  /* Azul Neon */
+    --text: #ffffff;
+    --text-muted: #c5a3ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* Container Responsivo */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Barra de Navegação */
+header {
+    background-color: rgba(31, 40, 51, 0.85);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(69, 243, 255, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+/* Banner Principal (Hero) */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 20px;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.hero-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-text span {
+    color: var(--accent);
+}
+
+.hero-img {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.hero-img img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(111, 66, 193, 0.4);
+}
+
+/* Formulários e Cards */
+.card-form {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(69, 243, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background: #0b0c10;
+    border: 1px solid rgba(69, 243, 255, 0.4);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* Painel do Dashboard (Área Logada) */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #6f42c1, #311b92);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.extrato-card {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.income { color: #45ff62; }
+.expense { color: #ff4545; }
+
+/* Rodapé Institucional Corrigido */
+footer {
+    background-color: #050608;
+    padding: 40px 20px;
+    margin-top: 80px;
+    border-top: 1px solid rgba(69, 243, 255, 0.1);
+    font-size: 14px;
+    color: #8c92ac;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 300px;/* Aumentado para o CEP e endereço caberem em uma linha só */
+}
+
+
+.footer-section h4 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* RESPONSIVIDADE (Celulares e Tablets) */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 10px;
+    }
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    .hero-text div {
+        margin: 0 auto;
+    }
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* Nova Seção de Serviços */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.service-item {
+    background-color: #1f2833;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(69, 243, 255, 0.1);
+    transition: 0.3s;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 5px 15px rgba(69, 243, 255, 0.2);
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+/* Links de Navegação do Menu */
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* ESSA REGRA IMPEDE QUE OS FORMULÁRIOS APAREÇAM NA TELA INICIAL */
+#login-section, #cadastro-section {
+    display: none;
+}

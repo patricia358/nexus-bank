@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessar Conta - Nexus Bank</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <header>
+        <nav class="container">
+            <div class="logo">🧬 Nexus Bank</div>
+            <div class="nav-links">
+                <a href="/">Voltar ao Início</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- FORMULÁRIO DE LOGIN ISOLADO -->
+    <div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 70vh; margin-top: 40px;">
+        
+        <section id="login-section" class="card-form" style="width: 100%; max-width: 450px; display: block !important;">
+            <h2 style="margin-bottom: 25px; text-align: center; color: #45f3ff; font-size: 2rem;">Já sou cliente</h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label style="font-size: 16px;">CPF (Apenas números)</label>
+                    <input type="text" id="loginCpf" required placeholder="000.000.000-00" style="padding: 15px; font-size: 18px;">
+                </div>
+                
+                <div class="form-group">
+                    <label style="font-size: 16px;">Senha de 6 dígitos</label>
+                    <input type="password" id="loginPassword" required placeholder="******" style="padding: 15px; font-size: 18px;">
+                </div>
+                
+                <button type="submit" style="padding: 16px; font-size: 18px; margin-top: 15px;">Entrar na Conta</button>
+            </form>
+            
+            <p id="loginMessage" style="margin-top: 20px; text-align: center; color: #ff4545; font-weight: bold; font-size: 16px;"></p>
+            
+            <p style="text-align: center; margin-top: 20px; color: #8c92ac;">
+                Ainda não tem conta? <a href="/cadastro" style="color: #6f42c1; font-weight: bold; text-decoration: none;">Cadastre-se aqui</a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- RODAPÉ INSTITUCIONAL COMPLETO -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🧬 Nexus Bank S.A.</h4>
+                <p>O banco que evolui com você. Tecnologia e segurança financeira ao seu alcance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>📞 Canais de Atendimento</h4>
+                <p>SAC (24h): 0800 999 1234</p>
+                <p>Ouvidoria: 0800 999 5678</p>
+                <p>E-mail: suporte@nexusbank.com.br</p>
+                </div>
+         <div class="footer-section">
+                <h4>📍 Endereço Físico</h4>
+                <p>Av. Paulista, 1000 - Bela Vista - São Paulo - SP</p>
+                <p>CEP: 01310-100</p>
+            </div>
+       
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const cpf = document.getElementById('loginCpf').value;
+            const password = document.getElementById('loginPassword').value;
+            const messageEl = document.getElementById('loginMessage');
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cpf, password })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    localStorage.setItem('userId', data.user.id);
+                    window.location.href = '/dashboard';
+                } else {
+                    messageEl.textContent = data.message;
+                }
+            } catch (err) {
+                messageEl.textContent = 'Erro ao conectar com o servidor.';
+            }
+        });
+    </script>
+</body>
+</html>

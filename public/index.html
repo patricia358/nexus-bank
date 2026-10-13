@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bank - O Seu Banco Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <header>
+        <nav class="container">
+            <div class="logo">🧬 Nexus Bank</div>
+            <div class="nav-links">
+                <a href="/">Início</a>
+                <!-- LINHA CORRIGIDA: Agora aponta exatamente para a rota correta do seu servidor -->
+                <a href="/todos-servicos">Serviços</a>
+                <a href="/login" class="login-btn">Acessar Conta</a>
+                <a href="/cadastro" class="cadastro-btn">Abra sua Conta</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- BANNER PRINCIPAL (HERO) -->
+    <section class="container hero">
+        <div class="hero-text">
+            <h1>O futuro das suas finanças está no <span class="highlight">Nexus Bank</span></h1>
+            <p>Conta 100% digital, 24 horas, sem tarifas escondidas, com rendimento automático e Pix ilimitado.</p>
+            
+            <!-- Links do Aplicativo -->
+            <div class="app-download">
+                <p>Baixe nosso Aplicativo Gratis</p>
+                <div class="app-buttons">
+
+                     <a href="app_simulador.html" class="app-btn" style="text-decoration: none; display: inline-block; color: #ff007f !important; font-weight: bold !important;">Google Play</a>
+    <span class="app-btn" style="color: #45f3ff !important; font-weight: bold !important;">App Store</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DOS NOSSOS SERVIÇOS (MANTENDO O SEU VISUAL ORIGINAL DE CAIXAS PEQUENAS) -->
+    <main class="container" id="servicos-section" style="padding-bottom: 80px;">
+        
+        <h2 style="font-size: 3rem; color: #45f3ff; text-align: center; margin-bottom: 15px; font-weight: bold;">
+            Nossos Serviços
+        </h2>
+        
+        <p style="color: #c5a3ff; text-align: center; font-size: 1.3rem; margin-bottom: 50px;">
+            Tudo o que você precisa para cuidar do seu dinheiro em um só lugar.
+        </p>
+
+        <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+            
+            <!-- 1. CAIXA CARTÃO -->
+            <div class="service-card" style="background: #111625; border: 1px solid #232a3c; padding: 25px; border-radius: 8px; text-align: center;">
+                <h3 style="color: #ffffff; margin-bottom: 15px;">Cartão de Crédito</h3>
+                <p style="color: #8c92ac; font-size: 0.95rem; margin-bottom: 20px;">Cartão Black internacional com cashback e sem anuidade.</p>
+                <a href="/nossos-servicos#cartao" style="background: #5d3fd3; color: white; padding: 8px 25px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Solicitar</a>
+            </div>
+
+            <!-- 2. CAIXA EMPRÉSTIMOS -->
+            <div class="service-card" style="background: #111625; border: 1px solid #232a3c; padding: 25px; border-radius: 8px; text-align: center;">
+                <h3 style="color: #ffffff; margin-bottom: 15px;">Empréstimos</h3>
+                <p style="color: #8c92ac; font-size: 0.95rem; margin-bottom: 20px;">Crédito pessoal rápido com as menores taxas do mercado.</p>
+                <a href="/nossos-servicos#emprestimo" style="background: #5d3fd3; color: white; padding: 8px 25px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Simular</a>
+            </div>
+
+            <!-- 3. CAIXA INVESTIMENTOS -->
+            <div class="service-card" style="background: #111625; border: 1px solid #232a3c; padding: 25px; border-radius: 8px; text-align: center;">
+                <h3 style="color: #ffffff; margin-bottom: 15px;">Investimentos</h3>
+                <p style="color: #8c92ac; font-size: 0.95rem; margin-bottom: 20px;">Seu dinheiro rendendo muito mais que a poupança.</p>
+                <a href="/nossos-servicos#investimento" style="background: #5d3fd3; color: white; padding: 8px 25px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Conhecer</a>
+            </div>
+
+            <!-- 4. CAIXA SEGUROS -->
+            <div class="service-card" style="background: #111625; border: 1px solid #232a3c; padding: 25px; border-radius: 8px; text-align: center;">
+                <h3 style="color: #ffffff; margin-bottom: 15px;">Seguros</h3>
+                <p style="color: #8c92ac; font-size: 0.95rem; margin-bottom: 20px;">Proteção para sua vida, sua casa e seu celular por centavam.</p>
+                <a href="/nossos-servicos#seguro" style="background: #5d3fd3; color: white; padding: 8px 25px; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Ver Planos</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ INSTITUCIONAL COMPLETO -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🧬 Nexus Bank S.A.</h4>
+                <p>O banco que evolui com você. Tecnologia e segurança financeira ao seu alcance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>📞 Canais de Atendimento</h4>
+                <p>SAC (24h): 0800 999 1234</p>
+                <p>Ouvidoria: 0800 999 5678</p>
+                <p>E-mail: suporte@nexusbank.com.br</p>
+            </div> <div class="footer-section">
+                <h4>📍 Endereço Físico</h4>
+                <p>Av. Paulista, 1000 - Bela Vista - São Paulo - SP</p>
+                <p>CEP: 01310-100</p>
+            </div>
+            
+        </div>
+    </footer>
+
+
+</body>
+</html>

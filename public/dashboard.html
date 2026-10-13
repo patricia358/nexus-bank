@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bank - Área do Cliente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO INTERNA -->
+    <header>
+        <nav class="container">
+            <div class="logo">🧬 Nexus Bank</div>
+            <div>
+                <button id="logoutBtn" style="background: transparent; border: 1px solid #ff4545; color: #ff4545; padding: 8px 15px; width: auto;">Sair</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- MENSAGEM DE BOAS-VINDAS -->
+        <h1 style="margin-top: 20px; font-weight: 300;">Olá, <span id="userName" style="color: #45f3ff; font-weight: bold;">Cliente</span>!</h1>
+        <p style="color: #8c92ac; margin-bottom: 30px;">Bem-vindo ao seu painel financeiro digital.</p>
+
+        <!-- GRID PRINCIPAL (SALDO + EXTRATO + ALTERAR TUDO) -->
+        <div class="dashboard-grid">
+            
+            <!-- COLUNA DA ESQUERDA: SALDO E DETALHES CADASTRAIS -->
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <!-- CARD DE SALDO -->
+                <div class="balance-card">
+                    <p style="text-transform: uppercase; font-size: 12px; letter-spacing: 1px; opacity: 0.8; margin-bottom: 10px;">Saldo Disponível</p>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 15px;">R$ <span id="userBalance">0,00</span></h2>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 15px; display: flex; gap: 10px;">
+                        <button onclick="alert('Simulação: PIX enviado com sucesso!')" style="background: rgba(255,255,255,0.15); font-size: 14px; padding: 10px;">⚡ Fazer PIX</button>
+                        <button onclick="alert('Seu cartão físico está a caminho!')" style="background: var(--accent); color: #0b0c10; font-size: 14px; padding: 10px;">💳 Meus Cartões</button>
+                    </div>
+                </div>
+
+                <!-- PAINEL REALISTA: ALTERAÇÃO DE TODOS OS DADOS SOLICITADOS -->
+                <div class="extrato-card">
+                    <h3 style="color: #6f42c1; margin-bottom: 20px; border-bottom: 1px solid rgba(111,66,193,0.2); padding-bottom: 10px;">⚙️ Gerenciar Meus Dados</h3>
+                    <form id="updateForm">
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label>Nome Completo</label>
+                            <input type="text" id="updateName" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label>E-mail</label>
+                            <input type="email" id="updateEmail" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label>Telefone de Contato</label>
+                            <input type="text" id="updatePhone" required placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label>Endereço (Rua, Número, Bairro)</label>
+                            <input type="text" id="updateAddress" required placeholder="Ex: Rua das Flores, 123">
+                        </div>
+                        <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+                            <div class="form-group" style="flex: 2;">
+                                <label>Cidade</label>
+                                <input type="text" id="updateCity" required>
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label>Estado</label>
+                                <input type="text" id="updateState" required placeholder="Ex: SP">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label>País</label>
+                            <input type="text" id="updateCountry" required placeholder="Ex: Brasil">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Nova Senha (Opcional)</label>
+                            <input type="password" id="updatePassword" placeholder="Deixe em branco para manter a atual">
+                        </div>
+                        <button type="submit" style="background: #6f42c1;">Salvar Alterações</button>
+                    </form>
+                    <p id="updateMessage" style="margin-top: 15px; text-align: center; color: #45ff62; font-weight: bold;"></p>
+                </div>
+            </div>
+
+            <!-- COLUNA DA DIREITA: CARD DO EXTRATO BANCÁRIO -->
+            <div class="extrato-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(69,243,255,0.2); padding-bottom: 10px;">
+                    <h3 style="color: #45f3ff;">📋 Extrato Bancário</h3>
+                    <button onclick="alert('Funcionalidade fictícia: Extrato exportado com sucesso!')" style="width: auto; padding: 6px 12px; font-size: 12px; background: #45f3ff; color: #0b0c10;">Exportar PDF</button>
+                </div>
+                <div id="transactionsList">
+                    <p style="color: #8c92ac; text-align: center; padding: 20px;">Carregando suas movimentações...</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ INSTITUCIONAL -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🧬 Nexus Bank S.A.</h4>
+                <p>O banco que evolui com você. Tecnologia e segurança financeira ao seu alcance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>📞 Canais de Atendimento</h4>
+                <p><strong>SAC (24h):</strong> 0800 999 1234</p>
+                <p><strong>Ouvidoria:</strong> 0800 999 5678</p>
+                <p><strong>E-mail:</strong> suporte@nexusbank.com.br</p>
+            </div>
+            <div class="footer-section">
+                <h4>📍 Endereço Físico</h4>
+                <p>Av. Paulista, 1000 - Bela Vista, São Paulo - SP - CEP: 01310-100</p>
+            </div>
+        </div>
+    </footer>
+      <script>
+        const userId = localStorage.getItem('userId');
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (!userId) {
+                window.location.href = 'index.html';
+                return;
+            }
+            carregarDadosDashboard();
+        });
+
+        // Carrega e preenche todos os dados salvos do usuário (inclusive os novos)
+        async function carregarDadosDashboard() {
+            try {
+                const response = await fetch(`/api/dashboard/${userId}`);
+                const data = await response.json();
+
+                document.getElementById('userName').innerText = data.name;
+                document.getElementById('userBalance').innerText = data.balance.toFixed(2).replace('.', ',');
+                
+                // Preenche o formulário automaticamente com o que está salvo no banco de dados
+                document.getElementById('updateName').value = data.name;
+                document.getElementById('updateEmail').value = data.email;
+                document.getElementById('updatePhone').value = data.phone || '';
+                document.getElementById('updateAddress').value = data.address || '';
+                document.getElementById('updateCity').value = data.city || '';
+                document.getElementById('updateState').value = data.state || '';
+                document.getElementById('updateCountry').value = data.country || '';
+
+                const listContainer = document.getElementById('transactionsList');
+                listContainer.innerHTML = '';
+
+                data.transactions.forEach(tx => {
+                    const item = document.createElement('div');
+                    item.className = 'transaction-item';
+                    const classeCor = tx.amount >= 0 ? 'income' : 'expense';
+                    const sinal = tx.amount >= 0 ? '+' : '';
+
+                    item.innerHTML = `
+                        <div>
+                            <p style="font-weight: bold; color: #fff;">${tx.description}</p>
+                            <small style="color: #8c92ac;">${tx.date}</small>
+                        </div>
+                        <span class="${classeCor}" style="font-weight: bold;">
+                            ${sinal} R$ ${tx.amount.toFixed(2).replace('.', ',')}
+                        </span>
+                    `;
+                    listContainer.appendChild(item);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+            }
+        }
+
+        // Lógica que envia todas as alterações simultâneas para o back-end salvar no banco
+        document.getElementById('updateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('updateName').value;
+            const email = document.getElementById('updateEmail').value;
+            const phone = document.getElementById('updatePhone').value;
+            const address = document.getElementById('updateAddress').value;
+            const city = document.getElementById('updateCity').value;
+            const state = document.getElementById('updateState').value;
+            const country = document.getElementById('updateCountry').value;
+            const password = document.getElementById('updatePassword').value;
+
+            const response = await fetch('/api/update-profile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, name, email, phone, address, city, state, country, password })
+            });
+            const data = await response.json();
+            
+            const msgElement = document.getElementById('updateMessage');
+            msgElement.innerText = data.message;
+            if(data.success) {
+                document.getElementById('userName').innerText = name;
+                document.getElementById('updatePassword').value = '';
+                alert('Sucesso: Seus novos dados de contato e endereço foram salvos no banco!');
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('userId');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
