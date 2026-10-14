@@ -7,6 +7,6 @@
     { "source": "/login", "destination": "/public/login.html" },
     { "source": "/cadastro", "destination": "/public/cadastro.html" },
     { "source": "/app-simulador", "destination": "/public/app_simulador.html" },
-    { "source": "/:path*", "destination": "/public/:path*" }
+    { "source": "/", "destination": "/public/index.html" }
   ]
 }
