@@ -1,7 +1,9 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/nossos-servicos", "destination": "/servicos.html", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/nossos-servicos", "destination": "/public/servicos.html" },
     { "source": "/servicos", "destination": "/public/servicos.html" },
     { "source": "/todos-servicos", "destination": "/public/todos-servicos.html" },
     { "source": "/login", "destination": "/public/login.html" },
