@@ -9,7 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Inicializa o banco de dados
-const db = new sqlite3.Database('./database.db', (err) => {
+const dbPath = process.env.VERCEL ? '/tmp/database.db' : './database.db';
+const db = new sqlite3.Database(dbPath, (err) => {
     if (err) console.error('Erro ao conectar ao banco:', err.message);
     else console.log('Conectado ao banco de dados SQLite.');
 });
