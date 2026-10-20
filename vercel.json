@@ -1,14 +1,37 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    { "source": "/nossos-servicos", "destination": "/servicos.html", "permanent": true }
-  ],
   "rewrites": [
-    { "source": "/servicos", "destination": "/public/servicos.html" },
-    { "source": "/todos-servicos", "destination": "/public/todos-servicos.html" },
-    { "source": "/login", "destination": "/public/login.html" },
-    { "source": "/cadastro", "destination": "/public/cadastro.html" },
-    { "source": "/app-simulador", "destination": "/public/app_simulador.html" },
-    { "source": "/:path*", "destination": "/public/:path*" }
+    {
+      "source": "/api/:path*",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/servicos",
+      "destination": "/public/servicos.html"
+    },
+    {
+      "source": "/todos-servicos",
+      "destination": "/public/todos-servicos.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/public/login.html"
+    },
+    {
+      "source": "/cadastro",
+      "destination": "/public/cadastro.html"
+    },
+    {
+      "source": "/app-simulador",
+      "destination": "/public/app_simulador.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/public/dashboard.html"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/public/:path*"
+    }
   ]
 }
