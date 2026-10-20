@@ -28,8 +28,8 @@
             
             <form id="loginForm">
                 <div class="form-group">
-                    <label style="font-size: 16px;">CPF (Apenas números)</label>
-                    <input type="text" id="loginCpf" required placeholder="000.000.000-00" style="padding: 15px; font-size: 18px;">
+                    <label style="font-size: 16px;">CPF (Digiteinputmode="numeric" maxlength="11" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 11)" os 11 numeros do CPF)</label>
+                    <input type="text" id="loginCpf" required  placeholder="000.000.000-00" style="padding: 15px; font-size: 18px;">
                 </div>
                 
                 <div class="form-group">
