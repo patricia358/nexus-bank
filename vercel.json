@@ -1,26 +1,15 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
-  ],
   "redirects": [
     { "source": "/nossos-servicos", "destination": "/servicos.html", "permanent": true }
   ],
-  "routes": [
-    { "source": "/api/(.*)", "dest": "server.js" },
-    { "source": "/servicos", "dest": "/public/servicos.html" },
-    { "source": "/todos-servicos", "dest": "/public/todos-servicos.html" },
-    { "source": "/login", "dest": "/public/login.html" },
-    { "source": "/cadastro", "dest": "/public/cadastro.html" },
-    { "source": "/app-simulador", "dest": "/public/app_simulador.html" },
-    { "source": "/(.*)", "dest": "/public/$1" }
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/server.js" },
+    { "source": "/servicos", "destination": "/public/servicos.html" },
+    { "source": "/todos-servicos", "destination": "/public/todos-servicos.html" },
+    { "source": "/login", "destination": "/public/login.html" },
+    { "source": "/cadastro", "destination": "/public/cadastro.html" },
+    { "source": "/app-simulador", "destination": "/public/app_simulador.html" },
+    { "source": "/:path*", "destination": "/public/:path*" }
   ]
 }
