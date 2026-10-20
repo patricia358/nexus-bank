@@ -1,10 +1,17 @@
 {
+  "version": 2,
   "cleanUrls": true,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
   "redirects": [
     { "source": "/nossos-servicos", "destination": "/servicos.html", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/server.js" },
+    { "source": "/api/:path*", "destination": "server.js" },
     { "source": "/servicos", "destination": "/public/servicos.html" },
     { "source": "/todos-servicos", "destination": "/public/todos-servicos.html" },
     { "source": "/login", "destination": "/public/login.html" },
