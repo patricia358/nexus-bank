@@ -1,0 +1,28 @@
+name: Remover node_modules
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  remover:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o projeto
+        uses: actions/checkout@v4
+
+      - name: Remover node_modules e criar gitignore
+        run: |
+          git rm -r node_modules
+          echo "node_modules/" > .gitignore
+
+      - name: Salvar a limpeza
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .gitignore
+          git commit -m "Remove node_modules do GitHub"
+          git push
