@@ -10,9 +10,13 @@
       "destination": "/public/servicos.html"
     },
     {
-      "source": "/todos-servicos",
-      "destination": "/public/todos-servicos.html"
+      "source": "/nossos-servicos",
+      "destination": "/public/servicos.html"
     },
+    {
+  "source": "/todos-servicos",
+  "destination": "/public/todos-servicos.html"
+},
     {
       "source": "/login",
       "destination": "/public/login.html"
@@ -33,5 +37,6 @@
       "source": "/:path*",
       "destination": "/public/:path*"
     }
-  ]
+    ]
+  }
 }
