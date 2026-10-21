@@ -33,8 +33,20 @@
             }
         }
 
-        window.onload = aplicarFiltroServico;
-        window.onhashchange = aplicarFiltroServico;
+        window.onload = function() {
+    aplicarFiltroServico();
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 100);
+};
+
+window.onhashchange = function() {
+    aplicarFiltroServico();
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 100);
+};
+
     </script>
 </head>
 
